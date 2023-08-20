@@ -3,7 +3,6 @@ def compute_gcd(a, b):
         a, b = b, a % b
     return a
 
-# Example usage:
 num1 = 84
 num2 = 18
 result = compute_gcd(num1, num2)

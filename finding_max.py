@@ -4,8 +4,8 @@ def find_max(numbers):
         if num > max_value:
             max_value = num
     return max_value
-    
-    
+
+
 num_list = input("Enter a list of numbers separated by spaces: ").split()
 num_list = [int(num) for num in num_list]
 
