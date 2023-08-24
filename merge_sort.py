@@ -1,41 +1,51 @@
 def merge_sort(array, aux_array, start, end):
-    if start < end:
-        mid = (start + end) // 2
+    if start == end:
+        return
+    else:
+        mid = int((start + end) / 2)
         merge_sort(array, aux_array, start, mid)
         merge_sort(array, aux_array, mid + 1, end)
-        merge_both_parts(array, aux_array, start, mid, end)
+        merge_both_parts(array, aux_array, start, mid + 1, end)
 
-def merge_both_parts(array, aux_array, left, mid, end):
-    i = left
-    j = mid + 1
-    k = left
 
-    while i <= mid and j <= end:
-        if array[i] <= array[j]:
-            aux_array[k] = array[i]
+def merge_both_parts(array, aux_array, left, right, end):
+    start = left
+    mid = right - 1
+    items_count = end - left + 1
+    i = 0
+
+    while (left <= mid and right <= end):
+
+        if (array[left] < array[right]):
+            aux_array[i] = array[left]
             i += 1
+            left += 1
+
         else:
-            aux_array[k] = array[j]
-            j += 1
-        k += 1
+            aux_array[i] = array[right]
+            i += 1
+            right += 1
 
-    while i <= mid:
-        aux_array[k] = array[i]
+    while left <= mid:
+        aux_array[i] = array[left]
         i += 1
-        k += 1
+        left += 1
 
-    while j <= end:
-        aux_array[k] = array[j]
-        j += 1
-        k += 1
+    while right <= end:
+        aux_array[i] = array[right]
+        i += 1
+        right += 1
 
-    for k in range(left, end + 1):
-        array[k] = aux_array[k]
+    i = 0
+
+    while i < items_count:
+        array[start + i] = aux_array[i]
+        i += 1
+
 
 array = [8, -7, 5, 1, 3, 10, 0]
-aux_array = [0] * len(array)
-print("Initial array:")
+print("\nInitial array:")
 print(array)
-merge_sort(array, aux_array, 0, len(array) - 1)
-print("Sorted array:")
+merge_sort(array, [0] * (len(array)), 0, len(array) - 1)
+print("\nSorted array:")
 print(array)
